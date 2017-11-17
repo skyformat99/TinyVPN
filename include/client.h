@@ -6,7 +6,7 @@
 
 #include <string>
 
-#include "../include/common.h"
+#include "common.h"
 
 namespace vpn {
 

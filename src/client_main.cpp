@@ -1,8 +1,8 @@
 #include <arpa/inet.h>
 
-#include "../include/client.h"
+#include "client.h"
 
-#include "../include/gflags/gflags.h"
+#include "gflags/gflags.h"
 
 DEFINE_string(srv_addr, "", "server's address. eg: 127.0.0.1");
 DEFINE_int32(srv_port, -1, "server's port. eg: 5003");

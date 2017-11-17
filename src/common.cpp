@@ -1,4 +1,4 @@
-#include "../include/common.h"
+#include "common.h"
 
 #include <linux/if_tun.h>
 #include <sys/socket.h>
@@ -21,10 +21,11 @@ Tun::Tun(): _fd(-1), _ip(), _name() {
     init();
 }
 
-Tun::Tun(const std::string& addr) {
+Tun::Tun(const std::string& addr) : _ip(addr) {
     init();
     std::string command;
-    command = "ip addr add " + addr + " dev " + _name;
+    std::string tmp = addr.substr(0, addr.rfind('.'));
+    command = "ip addr add " + tmp + ".0/24 dev " + _name;
     assert(system(command.c_str()) == 0);
 }
 
@@ -93,7 +94,7 @@ int Socket::bind(int port) {
     return ::bind(_fd, reinterpret_cast<struct sockaddr*>(&sock), sizeof(sock));
 }
 
-int Socket::sendto(const char* in, int size, const std::string& addr, int port) {
+int Socket::sendto(const void* in, int size, const std::string& addr, int port) {
     assert(_type == SOCK_DGRAM);
 
     struct sockaddr_in sock;

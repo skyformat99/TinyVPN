@@ -1,8 +1,8 @@
 #include <arpa/inet.h>
 
-#include "../include/server.h"
+#include "server.h"
 
-#include "../include/gflags/gflags.h"
+#include "gflags/gflags.h"
 
 DEFINE_string(tun_addr, "", "tun's address. eg: 127.0.0.1");
 DEFINE_int32(port, -1, "server's port. eg: 5003");

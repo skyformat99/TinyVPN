@@ -25,7 +25,7 @@ public:
     std::string ip() { return _ip; }
     std::string name() { return _name; }
 
-    int write(const char* in, int size) { return ::write(_fd, in, size); }
+    int write(const void* in, int size) { return ::write(_fd, in, size); }
     int read(char* out, int size) { return ::read(_fd, out, size); }
 private:
     int  _fd;
@@ -54,7 +54,7 @@ public:
 
     // just support UDP now
     int bind(int port);
-    int sendto(const char* in, int size, const std::string& addr, int port);
+    int sendto(const void* in, int size, const std::string& addr, int port);
     int recvfrom(char* out, int size, struct sockaddr* src, socklen_t* len);
 private:
     int _fd;
